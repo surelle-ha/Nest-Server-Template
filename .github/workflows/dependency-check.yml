@@ -3,9 +3,9 @@ name: "🔍 NestJS Version Watcher"
 on:
   push:
     branches:
-      - '**' # runs on push to any branch
+      - '**'
   schedule:
-    - cron: "0 0 * * *" # daily at midnight UTC
+    - cron: "0 0 * * *"
   workflow_dispatch:
 
 permissions:
@@ -65,11 +65,24 @@ jobs:
           Please review and consider upgrading.
           EOF
 
+      - name: Install GitHub CLI
+        run: sudo apt-get update && sudo apt-get install -y gh
+
+      - name: Check for existing issue
+        id: check
+        run: |
+          ISSUE_TITLE="Update NestJS (new version: ${{ steps.latest.outputs.latest }})"
+          EXISTING=$(gh issue list --state open --json number,title --jq ".[] | select(.title == \"$ISSUE_TITLE\") | .number")
+          echo "issue_number=$EXISTING" >> $GITHUB_OUTPUT
+          echo "issue_title=$ISSUE_TITLE" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create GitHub Issue
-        if: ${{ steps.compare.outputs.diff == 'major' || steps.compare.outputs.diff == 'minor' }}
+        if: steps.check.outputs.issue_number == ''
         uses: peter-evans/create-issue-from-file@v5
         with:
-          title: "Update NestJS (new version: ${{ steps.latest.outputs.latest }})"
+          title: ${{ steps.check.outputs.issue_title }}
           content-filepath: issue.md
-          labels: "update,nestjs"  # safer single-line format
+          labels: "update,nestjs"
           token: ${{ secrets.GITHUB_TOKEN }}
