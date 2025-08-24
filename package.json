@@ -18,7 +18,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prepare": "husky",
+    "prepare": "npx husky",
     "commit": "commit",
     "db:seed:start": "npx sequelize-cli db:seed:all",
     "db:seed:create": "npx sequelize-cli seed:generate --name",
