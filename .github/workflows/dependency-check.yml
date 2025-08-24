@@ -5,7 +5,7 @@ on:
     branches:
       - '**' # runs on push to any branch
   schedule:
-    - cron: "0 0 * * *"  # daily at midnight UTC
+    - cron: "0 0 * * *" # daily at midnight UTC
   workflow_dispatch:
 
 jobs:
@@ -51,15 +51,15 @@ jobs:
       - name: Write update issue body
         if: ${{ steps.compare.outputs.diff == 'major' || steps.compare.outputs.diff == 'minor' }}
         run: |
-          cat <<EOF > issue.md
-            ### NestJS version update available
+          cat <<'EOF' > issue.md
+          ### NestJS version update available
 
-            - **Current version:** ${{ steps.current.outputs.current }}
-            - **Latest version:** ${{ steps.latest.outputs.latest }}
-            - **Update type:** ${{ steps.compare.outputs.diff }}
+          - **Current version:** ${{ steps.current.outputs.current }}
+          - **Latest version:** ${{ steps.latest.outputs.latest }}
+          - **Update type:** ${{ steps.compare.outputs.diff }}
 
-            Please review and consider upgrading.
-            EOF
+          Please review and consider upgrading.
+          EOF
 
       - name: Create GitHub Issue
         if: ${{ steps.compare.outputs.diff == 'major' || steps.compare.outputs.diff == 'minor' }}
@@ -67,7 +67,5 @@ jobs:
         with:
           title: "Update NestJS (new version: ${{ steps.latest.outputs.latest }})"
           content-filepath: issue.md
-          labels: |
-            update
-            nestjs
+          labels: "update,nestjs"  # safer single-line format
           token: ${{ secrets.GITHUB_TOKEN }}
