@@ -1,4 +1,4 @@
-name: "🔍 NestJS Version Watcher"
+name: "🔍 NestJS Fastify Version Watcher"
 
 on:
   push:
@@ -27,16 +27,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Get current NestJS version
+      - name: Get current Fastify adapter version
         id: current
         run: |
-          CURRENT=$(node -p "require('./package.json').dependencies?.['@nestjs/core'] || require('./package.json').devDependencies?.['@nestjs/core']")
+          CURRENT=$(node -p "require('./package.json').dependencies?.['@nestjs/platform-fastify'] || require('./package.json').devDependencies?.['@nestjs/platform-fastify']")
           echo "current=$CURRENT" >> $GITHUB_OUTPUT
 
-      - name: Get latest NestJS version
+      - name: Get latest Fastify adapter version
         id: latest
         run: |
-          LATEST=$(npm view @nestjs/core version)
+          LATEST=$(npm view @nestjs/platform-fastify version)
           echo "latest=$LATEST" >> $GITHUB_OUTPUT
 
       - name: Compare versions
@@ -56,7 +56,7 @@ jobs:
         if: ${{ steps.compare.outputs.diff == 'major' || steps.compare.outputs.diff == 'minor' }}
         run: |
           cat <<'EOF' > issue.md
-          ### NestJS version update available
+          ### NestJS Fastify adapter update available
 
           - **Current version:** ${{ steps.current.outputs.current }}
           - **Latest version:** ${{ steps.latest.outputs.latest }}
@@ -71,7 +71,7 @@ jobs:
       - name: Check for existing issue
         id: check
         run: |
-          ISSUE_TITLE="Update NestJS (new version: ${{ steps.latest.outputs.latest }})"
+          ISSUE_TITLE="Update NestJS Fastify adapter (new version: ${{ steps.latest.outputs.latest }})"
           EXISTING=$(gh issue list --state open --json number,title --jq ".[] | select(.title == \"$ISSUE_TITLE\") | .number")
           echo "issue_number=$EXISTING" >> $GITHUB_OUTPUT
           echo "issue_title=$ISSUE_TITLE" >> $GITHUB_OUTPUT
@@ -84,5 +84,5 @@ jobs:
         with:
           title: ${{ steps.check.outputs.issue_title }}
           content-filepath: issue.md
-          labels: "update,nestjs"
+          labels: "update,nestjs,fastify"
           token: ${{ secrets.GITHUB_TOKEN }}
