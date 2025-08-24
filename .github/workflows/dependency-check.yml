@@ -8,6 +8,10 @@ on:
     - cron: "0 0 * * *" # daily at midnight UTC
   workflow_dispatch:
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   check-and-issue:
     runs-on: ubuntu-latest
