@@ -1,0 +1,73 @@
+name: "🔍 NestJS Version Watcher"
+
+on:
+  push:
+    branches:
+      - '**' # runs on push to any branch
+  schedule:
+    - cron: "0 0 * * *"  # daily at midnight UTC
+  workflow_dispatch:
+
+jobs:
+  check-and-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Get current NestJS version
+        id: current
+        run: |
+          CURRENT=$(node -p "require('./package.json').dependencies?.['@nestjs/core'] || require('./package.json').devDependencies?.['@nestjs/core']")
+          echo "current=$CURRENT" >> $GITHUB_OUTPUT
+
+      - name: Get latest NestJS version
+        id: latest
+        run: |
+          LATEST=$(npm view @nestjs/core version)
+          echo "latest=$LATEST" >> $GITHUB_OUTPUT
+
+      - name: Compare versions
+        id: compare
+        run: |
+          npm install -g semver
+          CUR=${{ steps.current.outputs.current }}
+          LATEST=${{ steps.latest.outputs.latest }}
+          CUR=${CUR//[^0-9.]/}
+          LATEST=${LATEST//[^0-9.]/}
+          echo "Current: $CUR"
+          echo "Latest: $LATEST"
+          DIFF=$(node -e "console.log(require('semver').diff('$CUR','$LATEST'))")
+          echo "diff=$DIFF" >> $GITHUB_OUTPUT
+
+      - name: Write update issue body
+        if: ${{ steps.compare.outputs.diff == 'major' || steps.compare.outputs.diff == 'minor' }}
+        run: |
+          cat <<EOF > issue.md
+            ### NestJS version update available
+
+            - **Current version:** ${{ steps.current.outputs.current }}
+            - **Latest version:** ${{ steps.latest.outputs.latest }}
+            - **Update type:** ${{ steps.compare.outputs.diff }}
+
+            Please review and consider upgrading.
+            EOF
+
+      - name: Create GitHub Issue
+        if: ${{ steps.compare.outputs.diff == 'major' || steps.compare.outputs.diff == 'minor' }}
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Update NestJS (new version: ${{ steps.latest.outputs.latest }})"
+          content-filepath: issue.md
+          labels: |
+            update
+            nestjs
+          token: ${{ secrets.GITHUB_TOKEN }}
