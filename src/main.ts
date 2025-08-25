@@ -10,14 +10,18 @@ import compress from '@fastify/compress';
 import underPressure from '@fastify/under-pressure';
 import { UnderPressureConfig } from './shared/configs/under-pressure.config';
 import { BootstrapFunctionArgs } from './shared/interfaces/bootstrap-function.interface';
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { UmzugService } from './infra/umzug/umzug.service';
 import { ResponseFormatInterceptor } from './shared/interceptors/response-format.interceptor';
+import view from '@fastify/view';
+import { ViewConfig } from './shared/configs/view.config';
+import { ValidationPipeConfig } from './shared/configs/validation.config';
 
 async function executeConfig(server: BootstrapFunctionArgs): Promise<void> {
   // Config Level
   server.config?.ENABLE_SHUTDOWN_HOOKS && server.app.enableShutdownHooks();
   server.app.enableVersioning(VersionConfig);
+  server.app.useGlobalPipes(new ValidationPipe(ValidationPipeConfig));
   server.logger.log(`Configurations have been set up successfully.`);
 
   // Middleware Level
@@ -25,6 +29,7 @@ async function executeConfig(server: BootstrapFunctionArgs): Promise<void> {
   server.config?.ENABLE_CORS && await server.app.register(cors, CorsConfig);
   server.config?.ENABLE_COMPRESSION && await server.app.register(compress);
   server.config?.ENABLE_UNDER_PRESSURE && await server.app.register(underPressure, UnderPressureConfig);
+  server.config?.ENABLE_VIEW && await server.app.register(view, ViewConfig);
   server.logger.log(`Middlewares have been set up successfully.`);
 
   // Intercetor Level

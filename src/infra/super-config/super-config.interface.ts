@@ -37,4 +37,5 @@ export interface SuperConfigOptions {
     ENABLE_COMPRESSION: boolean;
     ENABLE_UNDER_PRESSURE: boolean;
     ENABLE_SHUTDOWN_HOOKS: boolean;
+    ENABLE_VIEW: boolean;
 }

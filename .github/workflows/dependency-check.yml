@@ -1,0 +1,88 @@
+name: "🔍 NestJS Fastify Version Watcher"
+
+on:
+  push:
+    branches:
+      - '**'
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-and-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Get current Fastify adapter version
+        id: current
+        run: |
+          CURRENT=$(node -p "require('./package.json').dependencies?.['@nestjs/platform-fastify'] || require('./package.json').devDependencies?.['@nestjs/platform-fastify']")
+          echo "current=$CURRENT" >> $GITHUB_OUTPUT
+
+      - name: Get latest Fastify adapter version
+        id: latest
+        run: |
+          LATEST=$(npm view @nestjs/platform-fastify version)
+          echo "latest=$LATEST" >> $GITHUB_OUTPUT
+
+      - name: Compare versions
+        id: compare
+        run: |
+          npm install -g semver
+          CUR=${{ steps.current.outputs.current }}
+          LATEST=${{ steps.latest.outputs.latest }}
+          CUR=${CUR//[^0-9.]/}
+          LATEST=${LATEST//[^0-9.]/}
+          echo "Current: $CUR"
+          echo "Latest: $LATEST"
+          DIFF=$(node -e "console.log(require('semver').diff('$CUR','$LATEST'))")
+          echo "diff=$DIFF" >> $GITHUB_OUTPUT
+
+      - name: Write update issue body
+        if: ${{ steps.compare.outputs.diff == 'major' || steps.compare.outputs.diff == 'minor' }}
+        run: |
+          cat <<'EOF' > issue.md
+          ### NestJS Fastify adapter update available
+
+          - **Current version:** ${{ steps.current.outputs.current }}
+          - **Latest version:** ${{ steps.latest.outputs.latest }}
+          - **Update type:** ${{ steps.compare.outputs.diff }}
+
+          Please review and consider upgrading.
+          EOF
+
+      - name: Install GitHub CLI
+        run: sudo apt-get update && sudo apt-get install -y gh
+
+      - name: Check for existing issue
+        id: check
+        run: |
+          ISSUE_TITLE="Update NestJS Fastify adapter (new version: ${{ steps.latest.outputs.latest }})"
+          EXISTING=$(gh issue list --state open --json number,title --jq ".[] | select(.title == \"$ISSUE_TITLE\") | .number")
+          echo "issue_number=$EXISTING" >> $GITHUB_OUTPUT
+          echo "issue_title=$ISSUE_TITLE" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Issue
+        if: steps.check.outputs.issue_number == ''
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: ${{ steps.check.outputs.issue_title }}
+          content-filepath: issue.md
+          labels: "update,nestjs,fastify"
+          token: ${{ secrets.GITHUB_TOKEN }}

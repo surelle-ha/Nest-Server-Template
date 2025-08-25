@@ -57,6 +57,7 @@ export class SuperConfigService {
             ENABLE_COMPRESSION: this.convertBoolean(this.configService.get<boolean>('ENABLE_COMPRESSION', SuperConfigDefaults.ENABLE_COMPRESSION)),
             ENABLE_UNDER_PRESSURE: this.convertBoolean(this.configService.get<boolean>('ENABLE_UNDER_PRESSURE', SuperConfigDefaults.ENABLE_UNDER_PRESSURE)),
             ENABLE_SHUTDOWN_HOOKS: this.convertBoolean(this.configService.get<boolean>('ENABLE_SHUTDOWN_HOOKS', SuperConfigDefaults.ENABLE_SHUTDOWN_HOOKS)),
+            ENABLE_VIEW: this.convertBoolean(this.configService.get<boolean>('ENABLE_VIEW', SuperConfigDefaults.ENABLE_VIEW)),
         }
     }
 }

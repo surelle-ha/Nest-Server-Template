@@ -83,6 +83,7 @@ export class ResponseFormatInterceptor<T>
                         version: this.getApiVersion() || this.fallbackValue.NO_SERVER_INFO,
                         datetime: new Date().toISOString() || this.fallbackValue.NO_SERVER_INFO,
                         timezone: this.getTimeZone() || this.fallbackValue.NO_SERVER_INFO,
+                        uptime: process.uptime(),
                     },
                     client: {
                         version:
