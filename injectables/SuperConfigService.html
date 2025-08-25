@@ -1,0 +1,474 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Nest Server Template</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Nest Server Template</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >SuperConfigService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/infra/super-config/super-config.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convertBoolean" >convertBoolean</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#env" >env</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(configService: ConfigService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/infra/super-config/super-config.service.ts:7</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertBoolean"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>convertBoolean</b></span>
+                        <a href="#convertBoolean"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertBoolean(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="10"
+                                    class="link-to-prism">src/infra/super-config/super-config.service.ts:10</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="env"></a>
+                        <span class="name"><b>env</b><a href="#env"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>env()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/infra/super-config/super-config.service.ts:14</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger } from &#x27;@nestjs/common&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
+import { SuperConfigOptions } from &#x27;./super-config.interface&#x27;;
+import { SuperConfigDefaults } from &#x27;./super-config.default&#x27;;
+
+@Injectable()
+export class SuperConfigService {
+    constructor(private readonly configService: ConfigService) { }
+
+    private convertBoolean(value: any): boolean {
+        return value &#x3D;&#x3D;&#x3D; true || value &#x3D;&#x3D;&#x3D; &#x27;true&#x27; || value &#x3D;&#x3D;&#x3D; 1 || value &#x3D;&#x3D;&#x3D; &#x27;1&#x27;;
+    }
+
+    get env(): SuperConfigOptions {
+        return {
+            // App VARIABLES
+            APP_NAME: this.configService.get&lt;string&gt;(&#x27;APP_NAME&#x27;, SuperConfigDefaults.APP_NAME),
+            APP_ENV: this.configService.get&lt;string&gt;(&#x27;APP_ENV&#x27;, SuperConfigDefaults.APP_ENV),
+            APP_HOST: this.configService.get&lt;string&gt;(&#x27;APP_HOST&#x27;, SuperConfigDefaults.APP_HOST),
+            APP_PORT: this.configService.get&lt;number&gt;(&#x27;APP_PORT&#x27;, SuperConfigDefaults.APP_PORT),
+            APP_DEBUG: this.convertBoolean(this.configService.get&lt;boolean&gt;(&#x27;APP_DEBUG&#x27;, SuperConfigDefaults.APP_DEBUG)),
+            APP_SECRET: this.configService.get&lt;string&gt;(&#x27;APP_SECRET&#x27;, SuperConfigDefaults.APP_SECRET),
+            APP_TIMEZONE: this.configService.get&lt;string&gt;(&#x27;APP_TIMEZONE&#x27;, SuperConfigDefaults.APP_TIMEZONE),
+            APP_CLIENT_URL: this.configService.get&lt;string&gt;(&#x27;APP_CLIENT_URL&#x27;, SuperConfigDefaults.APP_CLIENT_URL),
+
+            // Auth Variables
+            AUTH_LIFETIME: this.configService.get&lt;number&gt;(&#x27;AUTH_LIFETIME&#x27;, SuperConfigDefaults.AUTH_LIFETIME),
+            AUTH_SALTROUND: this.configService.get&lt;number&gt;(&#x27;AUTH_SALTROUND&#x27;, SuperConfigDefaults.AUTH_SALTROUND),
+
+            // Database Variables
+            DATABASE_TYPE: this.configService.get&lt;string&gt;(&#x27;DATABASE_TYPE&#x27;, SuperConfigDefaults.DATABASE_TYPE),
+            DATABASE_HOST: this.configService.get&lt;string&gt;(&#x27;DATABASE_HOST&#x27;, SuperConfigDefaults.DATABASE_HOST),
+            DATABASE_PORT: this.configService.get&lt;number&gt;(&#x27;DATABASE_PORT&#x27;, SuperConfigDefaults.DATABASE_PORT),
+            DATABASE_NAME: this.configService.get&lt;string&gt;(&#x27;DATABASE_NAME&#x27;, SuperConfigDefaults.DATABASE_NAME),
+            DATABASE_USERNAME: this.configService.get&lt;string&gt;(&#x27;DATABASE_USERNAME&#x27;, SuperConfigDefaults.DATABASE_USERNAME),
+            DATABASE_PASSWORD: this.configService.get&lt;string&gt;(&#x27;DATABASE_PASSWORD&#x27;, SuperConfigDefaults.DATABASE_PASSWORD),
+            DATABASE_SSL: this.convertBoolean(this.configService.get&lt;boolean&gt;(&#x27;DATABASE_SSL&#x27;, SuperConfigDefaults.DATABASE_SSL)),
+            DATABASE_DEBUG: this.convertBoolean(this.configService.get&lt;boolean&gt;(&#x27;DATABASE_DEBUG&#x27;, SuperConfigDefaults.DATABASE_DEBUG)),
+
+            // Redis Variables
+            REDIS_HOST: this.configService.get&lt;string&gt;(&#x27;REDIS_HOST&#x27;, SuperConfigDefaults.REDIS_HOST),
+            REDIS_PORT: this.configService.get&lt;number&gt;(&#x27;REDIS_PORT&#x27;, SuperConfigDefaults.REDIS_PORT),
+            REDIS_USERNAME: this.configService.get&lt;string&gt;(&#x27;REDIS_USERNAME&#x27;, SuperConfigDefaults.REDIS_USERNAME),
+            REDIS_PASSWORD: this.configService.get&lt;string&gt;(&#x27;REDIS_PASSWORD&#x27;, SuperConfigDefaults.REDIS_PASSWORD),
+            REDIS_TTL: this.configService.get&lt;number&gt;(&#x27;REDIS_TTL&#x27;, SuperConfigDefaults.REDIS_TTL),
+
+            // Mailer Variables
+            MAILER_HOST: this.configService.get&lt;string&gt;(&#x27;MAILER_HOST&#x27;, SuperConfigDefaults.MAILER_HOST),
+            MAILER_PORT: this.configService.get&lt;number&gt;(&#x27;MAILER_PORT&#x27;, SuperConfigDefaults.MAILER_PORT),
+            MAILER_USERNAME: this.configService.get&lt;string&gt;(&#x27;MAILER_USERNAME&#x27;, SuperConfigDefaults.MAILER_USERNAME),
+            MAILER_PASSWORD: this.configService.get&lt;string&gt;(&#x27;MAILER_PASSWORD&#x27;, SuperConfigDefaults.MAILER_PASSWORD),
+            MAILER_SECURE: this.convertBoolean(this.configService.get&lt;boolean&gt;(&#x27;MAILER_SECURE&#x27;, SuperConfigDefaults.MAILER_SECURE)),
+
+            // Config Variables
+            ENABLE_HELMET: this.convertBoolean(this.configService.get&lt;boolean&gt;(&#x27;ENABLE_HELMET&#x27;, SuperConfigDefaults.ENABLE_HELMET)),
+            ENABLE_CORS: this.convertBoolean(this.configService.get&lt;boolean&gt;(&#x27;ENABLE_CORS&#x27;, SuperConfigDefaults.ENABLE_CORS)),
+            ENABLE_COMPRESSION: this.convertBoolean(this.configService.get&lt;boolean&gt;(&#x27;ENABLE_COMPRESSION&#x27;, SuperConfigDefaults.ENABLE_COMPRESSION)),
+            ENABLE_UNDER_PRESSURE: this.convertBoolean(this.configService.get&lt;boolean&gt;(&#x27;ENABLE_UNDER_PRESSURE&#x27;, SuperConfigDefaults.ENABLE_UNDER_PRESSURE)),
+            ENABLE_SHUTDOWN_HOOKS: this.convertBoolean(this.configService.get&lt;boolean&gt;(&#x27;ENABLE_SHUTDOWN_HOOKS&#x27;, SuperConfigDefaults.ENABLE_SHUTDOWN_HOOKS)),
+            ENABLE_VIEW: this.convertBoolean(this.configService.get&lt;boolean&gt;(&#x27;ENABLE_VIEW&#x27;, SuperConfigDefaults.ENABLE_VIEW)),
+        }
+    }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'SuperConfigService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

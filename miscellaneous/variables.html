@@ -1,0 +1,713 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Nest Server Template</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Nest Server Template</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#CorsConfig" title="src/shared/configs/cors.config.ts" ><b>CorsConfig</b>&nbsp;&nbsp;&nbsp;(src/.../cors.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DRIVER_TOKEN" title="src/infra/super-cache/super-cache.module.ts" ><b>DRIVER_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../super-cache.module.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MODULE_LOADER" title="src/bootstrap.module.ts" ><b>MODULE_LOADER</b>&nbsp;&nbsp;&nbsp;(src/.../bootstrap.module.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MODULE_LOADER" title="src/core/core.module.ts" ><b>MODULE_LOADER</b>&nbsp;&nbsp;&nbsp;(src/.../core.module.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MODULE_LOADER" title="src/infra/infra.module.ts" ><b>MODULE_LOADER</b>&nbsp;&nbsp;&nbsp;(src/.../infra.module.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MODULE_LOADER" title="src/plugins/plugin.module.ts" ><b>MODULE_LOADER</b>&nbsp;&nbsp;&nbsp;(src/.../plugin.module.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SUPER_OBSERVE_KEY" title="src/infra/super-observe/super-observe.decorator.ts" ><b>SUPER_OBSERVE_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../super-observe.decorator.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SuperConfigDefaults" title="src/infra/super-config/super-config.default.ts" ><b>SuperConfigDefaults</b>&nbsp;&nbsp;&nbsp;(src/.../super-config.default.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#UnderPressureConfig" title="src/shared/configs/under-pressure.config.ts" ><b>UnderPressureConfig</b>&nbsp;&nbsp;&nbsp;(src/.../under-pressure.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#UsePerformance" title="src/infra/super-observe/super-observe.decorator.ts" ><b>UsePerformance</b>&nbsp;&nbsp;&nbsp;(src/.../super-observe.decorator.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ValidationPipeConfig" title="src/shared/configs/validation.config.ts" ><b>ValidationPipeConfig</b>&nbsp;&nbsp;&nbsp;(src/.../validation.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#VersionConfig" title="src/shared/configs/version.config.ts" ><b>VersionConfig</b>&nbsp;&nbsp;&nbsp;(src/.../version.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ViewConfig" title="src/shared/configs/view.config.ts" ><b>ViewConfig</b>&nbsp;&nbsp;&nbsp;(src/.../view.config.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/shared/configs/cors.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CorsConfig"></a>
+                    <span class="name">
+                        <span ><b>CorsConfig</b></span>
+                        <a href="#CorsConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FastifyCorsOptions</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    origin: &#x27;http://localhost:3000&#x27;,
+    methods: [&#x27;GET&#x27;, &#x27;HEAD&#x27;, &#x27;PUT&#x27;, &#x27;PATCH&#x27;, &#x27;POST&#x27;, &#x27;DELETE&#x27;],
+    credentials: true,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/infra/super-cache/super-cache.module.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DRIVER_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>DRIVER_TOKEN</b></span>
+                        <a href="#DRIVER_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;SUPER_CACHE_DRIVER&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/bootstrap.module.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MODULE_LOADER"></a>
+                    <span class="name">
+                        <span ><b>MODULE_LOADER</b></span>
+                        <a href="#MODULE_LOADER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  BasicAuthModule,
+  InfraModule,
+  CoreModule,
+  PluginModule,
+  RouteModule
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/core/core.module.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MODULE_LOADER"></a>
+                    <span class="name">
+                        <span ><b>MODULE_LOADER</b></span>
+                        <a href="#MODULE_LOADER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    UserModule
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/infra/infra.module.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MODULE_LOADER"></a>
+                    <span class="name">
+                        <span ><b>MODULE_LOADER</b></span>
+                        <a href="#MODULE_LOADER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    SuperObserveModule.forRoot(),
+    SuperConfigModule,
+    SuperCacheModule.forRoot({
+        driver: &#x27;file&#x27;,
+        driverOptions: {
+            path: &#x27;./storage/cache.json&#x27;,
+            ttl: 60
+        }
+    }),
+    SequelizeModule.forRootAsync({
+        imports: [SuperConfigModule],
+        inject: [SuperConfigService],
+        useFactory: (configService: SuperConfigService) &#x3D;&gt; ({
+            dialect: &#x27;postgres&#x27;,
+            host: configService.env.DATABASE_HOST,
+            port: configService.env.DATABASE_PORT,
+            username: configService.env.DATABASE_USERNAME,
+            password: configService.env.DATABASE_PASSWORD,
+            database: configService.env.DATABASE_NAME,
+            logging: configService.env.DATABASE_DEBUG,
+            autoLoadModels: false,
+            synchronize: false,
+            dialectOptions: {
+                ssl: {
+                    require: true,
+                    rejectUnauthorized: false,
+                },
+            },
+            models: [User],
+        }),
+    }),
+    SuperServerModule,
+    UmzugModule,
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/plugins/plugin.module.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MODULE_LOADER"></a>
+                    <span class="name">
+                        <span ><b>MODULE_LOADER</b></span>
+                        <a href="#MODULE_LOADER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  HealthModule
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/infra/super-observe/super-observe.decorator.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SUPER_OBSERVE_KEY"></a>
+                    <span class="name">
+                        <span ><b>SUPER_OBSERVE_KEY</b></span>
+                        <a href="#SUPER_OBSERVE_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;SUPER_OBSERVE_KEY&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UsePerformance"></a>
+                    <span class="name">
+                        <span ><b>UsePerformance</b></span>
+                        <a href="#UsePerformance"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; SetMetadata(SUPER_OBSERVE_KEY, true)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/infra/super-config/super-config.default.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SuperConfigDefaults"></a>
+                    <span class="name">
+                        <span ><b>SuperConfigDefaults</b></span>
+                        <a href="#SuperConfigDefaults"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/SuperConfigOptions.html" target="_self" >SuperConfigOptions</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    APP_NAME: &#x27;default-api&#x27;,
+    APP_ENV: &#x27;local&#x27;,
+    APP_HOST: &#x27;0.0.0.0&#x27;,
+    APP_PORT: 8000,
+    APP_DEBUG: false,
+    APP_SECRET: &#x27;e12b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z7a8&#x27;,
+    APP_TIMEZONE: &#x27;UTC&#x27;,
+    APP_CLIENT_URL: &#x27;localhost&#x27;,
+
+    AUTH_LIFETIME: 3600,
+    AUTH_SALTROUND: 10,
+
+    DATABASE_TYPE: &#x27;postgres&#x27;,
+    DATABASE_HOST: &#x27;localhost&#x27;,
+    DATABASE_PORT: 5432,
+    DATABASE_NAME: &#x27;default_db&#x27;,
+    DATABASE_USERNAME: &#x27;user&#x27;,
+    DATABASE_PASSWORD: &#x27;password&#x27;,
+    DATABASE_SSL: false,
+    DATABASE_DEBUG: false,
+
+    REDIS_HOST: &#x27;localhost&#x27;,
+    REDIS_PORT: 6379,
+    REDIS_USERNAME: &#x27;&#x27;,
+    REDIS_PASSWORD: &#x27;&#x27;,
+    REDIS_TTL: 3600,
+
+    MAILER_HOST: &#x27;smtp.example.com&#x27;,
+    MAILER_PORT: 587,
+    MAILER_USERNAME: &#x27;user@example.com&#x27;,
+    MAILER_PASSWORD: &#x27;password&#x27;,
+    MAILER_SECURE: false,
+
+    ENABLE_HELMET: true,
+    ENABLE_CORS: true,
+    ENABLE_COMPRESSION: true,
+    ENABLE_UNDER_PRESSURE: true,
+    ENABLE_SHUTDOWN_HOOKS: true,
+    ENABLE_VIEW: true
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/shared/configs/under-pressure.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UnderPressureConfig"></a>
+                    <span class="name">
+                        <span ><b>UnderPressureConfig</b></span>
+                        <a href="#UnderPressureConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FastifyUnderPressureOptions</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    maxEventLoopDelay: 1000,
+    maxHeapUsedBytes: 1e9,
+    maxRssBytes: 1e9,
+    healthCheck: async () &#x3D;&gt; {
+        return { status: &#x27;ok&#x27; };
+    },
+    healthCheckInterval: 5000,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/shared/configs/validation.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ValidationPipeConfig"></a>
+                    <span class="name">
+                        <span ><b>ValidationPipeConfig</b></span>
+                        <a href="#ValidationPipeConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ValidationPipeOptions</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    transform: true,
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    forbidUnknownValues: true,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/shared/configs/version.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="VersionConfig"></a>
+                    <span class="name">
+                        <span ><b>VersionConfig</b></span>
+                        <a href="#VersionConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>VersioningOptions</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  type: VersioningType.URI,
+  defaultVersion: &#x27;1&#x27;,
+  prefix: &#x27;api/v&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/shared/configs/view.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ViewConfig"></a>
+                    <span class="name">
+                        <span ><b>ViewConfig</b></span>
+                        <a href="#ViewConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FastifyViewOptions</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    engine: {
+        ejs: require(&#x27;ejs&#x27;),
+    },
+    root: join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;views&#x27;, &#x27;resource&#x27;),
+    layout: &#x27;&#x27;,
+    includeViewExtension: true,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
