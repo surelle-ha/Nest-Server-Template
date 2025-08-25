@@ -15,7 +15,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
         <nav>
             <ul class="list">
                 <li class="title">
-                    <a href="index.html" data-type="index-link">Nest Server Template</a>
+                    <a href="index.html" data-type="index-link">
+                        <img alt="" class="img-responsive" data-type="custom-logo" data-src="images/icon.png">
+                    </a>
                 </li>
 
                 <li class="divider"></li>
