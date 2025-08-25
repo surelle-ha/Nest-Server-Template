@@ -25,7 +25,9 @@
     "db:migrate:start": "npx sequelize-cli db:migrate",
     "db:migrate:create": "npx sequelize-cli migration:generate --name",
     "db:migrate:undo": "npx sequelize-cli db:migrate:undo",
-    "db:migrate:undo:all": "npx sequelize-cli db:migrate:undo:all"
+    "db:migrate:undo:all": "npx sequelize-cli db:migrate:undo:all",
+    "docs:build": "npx @compodoc/compodoc -p tsconfig.json -n 'Nest Server Template'",
+    "docs:serve": "npx @compodoc/compodoc -s -d documentation"
   },
   "dependencies": {
     "@fastify/compress": "^8.1.0",
@@ -62,6 +64,7 @@
     "umzug": "^3.8.2"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.26",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
     "@nestjs/cli": "^11.0.0",
