@@ -34,9 +34,10 @@ export const SuperConfigDefaults: SuperConfigOptions = {
     MAILER_PASSWORD: 'password',
     MAILER_SECURE: false,
 
-    ENABLE_HELMET: false,
-    ENABLE_CORS: false,
-    ENABLE_COMPRESSION: false,
-    ENABLE_UNDER_PRESSURE: false,
-    ENABLE_SHUTDOWN_HOOKS: false
+    ENABLE_HELMET: true,
+    ENABLE_CORS: true,
+    ENABLE_COMPRESSION: true,
+    ENABLE_UNDER_PRESSURE: true,
+    ENABLE_SHUTDOWN_HOOKS: true,
+    ENABLE_VIEW: true
 };

@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common';
-import { AuthModule } from './auth/auth.module';
+import { BasicAuthModule } from './auth/basic-auth.module';
 import { PluginModule } from './plugins/plugin.module';
 import { InfraModule } from './infra/infra.module';
 import { CoreModule } from './core/core.module';
+import { RouteModule } from './views/route.module';
 
 const MODULE_LOADER = [
-  AuthModule,
+  BasicAuthModule,
   InfraModule,
   CoreModule,
-  PluginModule
+  PluginModule,
+  RouteModule
 ]
 
 @Module({

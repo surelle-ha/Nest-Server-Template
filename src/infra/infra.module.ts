@@ -1,12 +1,15 @@
 import { Global, Module } from '@nestjs/common';
 import { SuperConfigModule } from './super-config/super-config.module';
 import { SuperConfigService } from './super-config/super-config.service';
-import { ServerInfoModule } from './server-info/server-info.module';
+import { SuperServerModule } from './super-server/super-server.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { UmzugModule } from './umzug/umzug.module';
 import { SuperCacheModule } from './super-cache/super-cache.module';
+import { User } from 'src/core/user/user.model';
+import { SuperObserveModule } from './super-observe/super-observe.module';
 
 const MODULE_LOADER = [
+    SuperObserveModule.forRoot(),
     SuperConfigModule,
     SuperCacheModule.forRoot({
         driver: 'file',
@@ -34,9 +37,10 @@ const MODULE_LOADER = [
                     rejectUnauthorized: false,
                 },
             },
+            models: [User],
         }),
     }),
-    ServerInfoModule,
+    SuperServerModule,
     UmzugModule,
 ]
 
