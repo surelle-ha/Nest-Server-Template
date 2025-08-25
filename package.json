@@ -26,7 +26,7 @@
     "db:migrate:create": "npx sequelize-cli migration:generate --name",
     "db:migrate:undo": "npx sequelize-cli db:migrate:undo",
     "db:migrate:undo:all": "npx sequelize-cli db:migrate:undo:all",
-    "docs:build": "npx @compodoc/compodoc -p tsconfig.json -n 'Nest Server Template'",
+    "docs:build": "npx @compodoc/compodoc -p tsconfig.json -n 'Nest Server Template' --customLogo ./src/views/resource/images/icon.png --customFavicon ./src/views/resource/images/favicon.ico",
     "docs:serve": "npx @compodoc/compodoc -s -d documentation",
     "docker:prepare": "concurrently \"npm run start:prod\" \"npm run docs:serve\"",
     "docker:up": "docker compose up --build -d",
