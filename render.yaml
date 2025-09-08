@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: api.nest-surelle.com
+    runtime: node
+    repo: https://github.com/surelle-ha/Nest-Server-Template
+    plan: free
+    branch: main
+    buildCommand: npm run build
+    startCommand: npm run start:prod
