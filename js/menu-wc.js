@@ -138,6 +138,23 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/PluginModule.html" data-type="entity-link" >PluginModule</a>
                             </li>
                             <li class="link">
+                                <a href="modules/RenderModule.html" data-type="entity-link" >RenderModule</a>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                        'data-bs-target="#injectables-links-module-RenderModule-9be3640de35b2a854ab802641432b809ba995cdd9fc3181fba79041d4ba3cc869a57b2167eea1e4877c4717b77fbaa5104be4ad6dbcd7834163c12bddde7f7ef"' : 'data-bs-target="#xs-injectables-links-module-RenderModule-9be3640de35b2a854ab802641432b809ba995cdd9fc3181fba79041d4ba3cc869a57b2167eea1e4877c4717b77fbaa5104be4ad6dbcd7834163c12bddde7f7ef"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-RenderModule-9be3640de35b2a854ab802641432b809ba995cdd9fc3181fba79041d4ba3cc869a57b2167eea1e4877c4717b77fbaa5104be4ad6dbcd7834163c12bddde7f7ef"' :
+                                        'id="xs-injectables-links-module-RenderModule-9be3640de35b2a854ab802641432b809ba995cdd9fc3181fba79041d4ba3cc869a57b2167eea1e4877c4717b77fbaa5104be4ad6dbcd7834163c12bddde7f7ef"' }>
+                                        <li class="link">
+                                            <a href="injectables/RenderService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RenderService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/RouteModule.html" data-type="entity-link" >RouteModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
