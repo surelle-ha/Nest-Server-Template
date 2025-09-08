@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { HealthModule } from './health/health.module';
+import { RenderModule } from './render/render.module';
 
 const MODULE_LOADER = [
-  HealthModule
+  HealthModule,
+  RenderModule
 ]
 
 @Module({
