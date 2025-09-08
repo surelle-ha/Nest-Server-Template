@@ -5,5 +5,5 @@ services:
     repo: https://github.com/surelle-ha/Nest-Server-Template
     plan: free
     branch: main
-    buildCommand: npm run build
+    buildCommand: npm install && npm run build
     startCommand: npm run start:prod
